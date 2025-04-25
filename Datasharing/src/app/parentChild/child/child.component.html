@@ -1,0 +1,23 @@
+<div class="table-container">
+    <table border="1">
+      <thead>
+        <tr>
+          <!-- Dynamically create table headers from object keys -->
+          <th *ngFor="let key of objectKeys(dataArray[0])">{{ key | uppercase }}</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dynamically create rows based on the array -->
+        <tr *ngFor="let row of dataArray">
+          <!-- Dynamically create table cells based on object values -->
+          <td *ngFor="let key of objectKeys(row)">{{ row[key] }}</td>
+          <td>
+             <button type="button" (click)="onIconClickCompany('edit',row)">Edit</button>
+             <button type="button" (click)="onIconClickCompany('delete',row)">Delete</button>
+          <td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

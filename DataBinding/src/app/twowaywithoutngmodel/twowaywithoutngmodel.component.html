@@ -1,0 +1,8 @@
+<br />
+<br />
+<hr />
+<label for="DESC">Desc: </label>
+<input [value]="myEvenetValues" (input)="myEvenetValues = ($any($event.target)).value" id="DESC" />
+<br />
+<hr />
+<h1>{{myEvenetValues}}</h1>
