@@ -1,0 +1,12 @@
+<p>parent works!</p>
+
+<app-child [alertMessageChild]="alertMessage" [alertSuccessChild]="alertSuccess" (alertChange)="onClickParent($event)"></app-child>
+
+<br>
+<br>
+<br>
+<hr>
+<h1>Parent Component</h1>
+<div> 
+    <p>{{clickParent}}</p>
+</div>

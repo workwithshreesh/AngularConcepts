@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { DatashareService } from '../datashare.service';
 import { CommonModule } from '@angular/common';
+import { DatashareService } from '../datashare.service';
 
 @Component({
   selector: 'app-siblings2',

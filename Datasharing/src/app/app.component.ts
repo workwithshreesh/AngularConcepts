@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { DatashareService } from './datashare.service';
+import { DatashareService } from './siblingsCommunication/datashare.service';
 
 @Component({
   selector: 'app-root',
