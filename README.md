@@ -112,7 +112,7 @@ Open your browser and go to `http://localhost:4200/` to see the application in a
 ---
 
 ## Connect with me:
-- **[LinkedIn](https://www.linkedin.com/in/your-linkedin-id)**  *(Replace with your actual LinkedIn URL)*
+- **[LinkedIn](https://www.linkedin.com/in/workwithshreesh)**  *(Replace with your actual LinkedIn URL)*
 - **[Twitter](https://twitter.com/workwithshreesh)**  *(Twitter handle is @workwithshreesh)*
 
 ---
