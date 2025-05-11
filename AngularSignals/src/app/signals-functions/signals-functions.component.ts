@@ -22,9 +22,25 @@ person = signal<Person>({
   age: 18,
 });
 
+
+arrayConatiner = signal<string[]>(["Buy Milk", "Bulk Milk"])
+
+
 incaseMutate() {
   this.person.update(p => ({...p, age: p.age+1}))
 }
+
+
+arrayMutate() {
+  this.arrayConatiner.update(value => {
+    const newArray = [...value];
+
+    newArray.splice(1,1,"1 Milk Bottel");
+
+    return newArray;
+  });
+}
+
 
   ngOnInit(): void {
     // console on signal count
@@ -46,6 +62,16 @@ incaseMutate() {
 
    // signal object change
    console.log(this.person())
+
+  //  array signal before mutate
+  console.log(this.arrayConatiner())
+  
+  //  array mutate
+  this.arrayMutate()
+
+
+  // array mutate console on screen
+  console.log(this.arrayConatiner());
 
   }
 
