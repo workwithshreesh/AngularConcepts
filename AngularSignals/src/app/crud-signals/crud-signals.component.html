@@ -1,1 +1,96 @@
-<p>crud-signals works!</p>
+<div class="container-fluid m-3">
+    <button class="btn btn-sm btn-primary" (click)="openModal('Add')">Add New Product</button>
+</div>
+<table class="table table-hover">
+    @if (product().length === 0){
+    <div class="d-flex justify-content-center w-100 h-vh-100">
+        <div class="container text-center">
+            <p class="m-2">No Data avilable</p>
+            <button class="btn btn-sm btn-primary">Add New Product</button>
+        </div>
+    </div>
+    } @else {
+    <thead>
+        <tr>
+            <th scope="col">Sr. No</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (productData of product(); track $index) {
+        <tr>
+            <th scope="row">{{ $index + 1 }}</th>
+            <td>{{ productData.name }}</td>
+            <td>{{ productData.price }}</td>
+            <td>
+                <button class="btn btn-sm btn-warning me-2"
+                    (click)="openModal({edit:'Edit', data:productData})">Edit</button>
+                <button class="btn btn-sm btn-danger" (click)="deleteProduct(productData.name)">Delete</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+    }
+</table>
+
+
+
+<div class="modal" #addNewProduct tabindex="-1">
+    <div class="modal-dialog">
+        <form [formGroup]="Product">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <label for="product" class="form-label">Product Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="productName"
+                          [ngClass]="{
+                            'is-invalid': Product.get('productName')?.invalid && Product.get('productName')?.dirty,
+                            'is-valid': Product.get('productName')?.valid && Product.get('productName')?.dirty
+                          }"
+                        />
+                        <div *ngIf="Product.get('productName')?.dirty && Product.get('productName')?.invalid" class="invalid-feedback">
+                          <div *ngIf="Product.get('productName')?.errors?.['required']">
+                            Product Name is required.
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="price" class="form-label">Product Price</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          formControlName="productPrice"
+                          [ngClass]="{
+                            'is-invalid': Product.get('productPrice')?.invalid && Product.get('productPrice')?.dirty,
+                            'is-valid': Product.get('productPrice')?.valid && Product.get('productPrice')?.dirty
+                          }"
+                        />
+                        <div *ngIf="Product.get('productPrice')?.dirty && Product.get('productPrice')?.invalid" class="invalid-feedback">
+                          <div *ngIf="Product.get('productPrice')?.errors?.['required']">
+                            Product Price is required.
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+                    <button class="btn btn-primary" type="button" [disabled]="Product.invalid"
+                        (click)="Edit ? saveEditedProduct() : addProduct()">
+                        Submit
+                    </button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
