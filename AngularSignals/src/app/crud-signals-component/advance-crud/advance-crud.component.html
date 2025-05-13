@@ -1,0 +1,24 @@
+<input [formControl] = 'searchInput' placeholder="Search by title">
+
+<div class="d-flex justify-content-center align-items-center w-100 h-vh-100">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="row">Sr No.</th>
+                <th scope="row">Title</th>
+                <th scope="row">Post</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let post of posts(); let i = index;">
+                <th scope="col">{{ i+1 }}</th>
+                <td>{{ post.title }}</td>
+                <td>{{ post.body }}</td>
+                <td>
+                    <button class="btn me-2 btn-sm btn-primary" (click)="onUpdate()">Update</button>
+                    <button class="btn btn-sm btn-warning" (click)="onDelete()">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
