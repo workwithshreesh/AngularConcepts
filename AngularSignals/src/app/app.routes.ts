@@ -4,6 +4,7 @@ import { SignalsFunctionsComponent } from './signals-functions/signals-functions
 import { SignalsAdvFuncComponent } from './signals-adv-func/signals-adv-func.component';
 import { CrudSignalsComponent } from './crud-signals/crud-signals.component';
 import { AdvanceCrudComponent } from './crud-signals-component/advance-crud/advance-crud.component';
+import { PostFormComponent } from './crud-signals-component/post-form/post-form.component';
 
 export const routes: Routes = [
     {
@@ -23,7 +24,16 @@ export const routes: Routes = [
         component: CrudSignalsComponent
     },
     {
-        path:'signal-advcrud',
-        component: AdvanceCrudComponent
+        path:'',
+        children : [
+            {
+                path: 'signal-advcrud',
+                component: AdvanceCrudComponent
+            },
+            {
+                path: 'signal-form',
+                component: PostFormComponent
+            }
+        ]
     }
 ];

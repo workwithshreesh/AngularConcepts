@@ -1,6 +1,14 @@
-<input [formControl] = 'searchInput' placeholder="Search by title">
 
-<div class="d-flex justify-content-center align-items-center w-100 h-vh-100">
+<div class="form-group m-3 mb-3 row">
+    <div class="col-6">
+        <input [formControl] = 'searchInput' class="form-control" placeholder="Search by title">
+    </div>
+</div>
+<div class="ms-4">
+    <button routerLink="/signal-form" class="btn btn-primary">Add New Data</button>
+</div>
+
+<div class="d-flex justify-content-center border align-items-center w-100 h-vh-100 m-3">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -15,8 +23,8 @@
                 <td>{{ post.title }}</td>
                 <td>{{ post.body }}</td>
                 <td>
-                    <button class="btn me-2 btn-sm btn-primary" (click)="onUpdate()">Update</button>
-                    <button class="btn btn-sm btn-warning" (click)="onDelete()">Delete</button>
+                    <button class="btn me-2 btn-sm btn-primary" (click)="onUpdate(post)">Update</button>
+                    <button class="btn btn-sm btn-warning" (click)="deletePost(post.id)">Delete</button>
                 </td>
             </tr>
         </tbody>

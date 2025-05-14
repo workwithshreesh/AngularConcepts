@@ -1,7 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { PostService } from '../advance-crud/post.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { DataSharingService } from '../data-sharing.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-form',
@@ -12,7 +14,12 @@ import { CommonModule } from '@angular/common';
 export class PostFormComponent implements OnInit {
 
   private postService = inject(PostService);
+  private dataShareService = inject(DataSharingService);
+  private router = inject(Router)
   private fb = inject(FormBuilder);
+  private postData = this.dataShareService.selectedPost();
+
+  isEdit = signal(false);
 
   postForm!: FormGroup
 
@@ -20,16 +27,28 @@ export class PostFormComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.initForm();
+    if(this.postData){
+      this.isEdit.set(true);
+      this.patchData();
+    }
+    
+  }
+
+  initForm(){
     this.postForm = this.fb.group({
       id: [null],
       title: ['', Validators.required],
       body: ['', Validators.required]
     });
-
   }
 
   patchData() {
-
+    this.postForm.patchValue({
+      id: this?.postData?.id,
+      title: this.postData?.title,
+      body: this.postData?.body
+    });
   }
 
 
@@ -39,7 +58,7 @@ export class PostFormComponent implements OnInit {
       this.postService.addPost(post as any);
       this.postForm.reset();
     }
-
+    this.postForm.reset()
   }
 
   onUpdate() {
@@ -48,6 +67,9 @@ export class PostFormComponent implements OnInit {
       this.postService.updatePost(post as any);
       this.postForm.reset();
     }
+    this.isEdit.set(false);
+    this.postForm.reset();
+    this.router.navigate(['signal-advcrud'])
   }
 
 }
