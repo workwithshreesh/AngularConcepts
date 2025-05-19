@@ -43,8 +43,8 @@
             <hr>
             <p>Current Name : <strong class="text-success">{{name}}</strong></p>
             <span class="badge"
-            [ngClass]="techStatus3 == 'complete' ? 'bg-success' : techStatus3 == 'error' ? 'bg-warning' : 'bg-success'"
-            >Success</span>
+            [ngClass]="techStatus3 == 'complete' ? 'bg-primary' : techStatus3 == 'error' ? 'bg-danger' : 'bg-primary'"
+            >{{techStatus3 == 'complete' ? 'Success' : techStatus3 == 'error' ? 'Danger' : 'Success'}}</span>
         </div>
     </div>
 </div>
